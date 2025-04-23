@@ -14,6 +14,10 @@ DEEPSEEK_API_URL = "https://api.deepseek.com/v1/chat/completions"
 
 users = {}  # Temporary user storage
 
+@app.route('/static/<path:filename>')
+def serve_static(filename):
+    return send_from_directory('static', filename)
+
 @app.route('/')
 def home():
     return render_template('home.html')
@@ -68,4 +72,4 @@ def ask():
     return render_template('ask.html')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5002, debug=True)
+    app.run(host='0.0.0.0', port=5002, debug=False)
